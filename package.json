@@ -9,11 +9,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
+    "cors": "^2.8.3",
     "express": "^4.14.0",
     "jsonwebtoken": "^7.3.0",
     "mongoose": "^4.9.4",
-    "morgan":"*",
-    "bcrypt-nodejs": "0.0.3"
+    "morgan": "*"
   }
 }

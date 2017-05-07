@@ -3,10 +3,13 @@ var mongoose = require('mongoose');
 var morgan = require('morgan');
 var middleware = require('./middleware/middleware');
 var express = require('express');
+var cors = require('cors')
 
 // Create Express web app
 var app = express();
 
+app.use(cors());
+app.options('*', cors());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
