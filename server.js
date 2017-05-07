@@ -31,6 +31,8 @@ var router = express.Router();
 
 require('./controllers/controller')(app);
 
+app.set('port', (process.env.PORT || 3000));
+
 //app.use("/api",router);
 
 var options = {
@@ -48,7 +50,7 @@ mongoose.connect(process.env.MONGOOSE_CONNECT,options, (error) => {
     console.log('Error connecting to DB ',error);
   }
   else {
-      app.listen(3000, function () {
+      app.listen(app.get('port'), () => {
       console.log("Example app listening on port 3000!");
     });
   }
