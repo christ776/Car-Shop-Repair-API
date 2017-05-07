@@ -21,15 +21,15 @@ exports.login = (req, res) => {
     User.findOne({email: email.toLowerCase()}, (err, user) => {
 
         if (err) {
-            return res.status(401).send('User does not exist or bad password');
+            return res.status(401).json({'Error':'User does not exist or bad password'});
         }
         if (user) {
              // Make sure the password is correct
             user.verifyPassword(password,function(err, isMatch) {
                 if (err || !isMatch) {
-                    return res.status(401).send('User does not exist or bad password');
+                    return res.status(401).json({'Error':'User does not exist or bad password'});
                 }  
-                return res.status(200).send({token: middleware.createToken(user)});
+                return res.status(200).json({token: middleware.createToken(user)});
             });
         }
     });
