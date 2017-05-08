@@ -1,17 +1,21 @@
 var jwt = require('jsonwebtoken');
 
 module.exports.createToken = (user) => {
-    jwt.sign(user,process.env.SECRET_KEY, {
-        expiresIn:4000
-    },
-    (err,token) => {
-        if (err) {
-            res.status(403).json({error:"Unable to authenticate"})
-        }
-        else {
-            res.status(200).json({'token':token});
-        }
-    });
+
+  return new Promise((resolve,reject) => {
+
+      jwt.sign(user,process.env.SECRET_KEY, {
+          expiresIn:4000
+      },
+      (err,token) => {
+          if (err) {
+              reject(err);
+          }
+          else {
+            resolve(token);
+          }
+      });
+  });
 }
 
 module.exports.verifyToken = (req,res) => {
