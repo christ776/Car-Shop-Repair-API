@@ -29,7 +29,10 @@ exports.login = (req, res) => {
                 middleware.createToken(user).
                 then(
                     (token) => {
-                    return res.status(200).json({'token': token});
+                    return res.status(200).json({
+                    'token': token, 
+                    'user':{'fullname':user.fullname, 'email':user.email}
+                });
                 }).catch( 
                     (error) => {
                     return res.status(401).json({'Error':'User does not exist or bad password'});
