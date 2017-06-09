@@ -4,6 +4,8 @@ var bcrypt = require('bcrypt-nodejs');
 // Used to generate password hash
 const SALT_WORK_FACTOR = 10;
 
+const Roles = ['admin','user'];
+
 // Define user model schema
 var UserSchema = new mongoose.Schema({
   fullname:{
@@ -18,7 +20,15 @@ var UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  role:{
+      type: {type:String, default: "user",enum:Roles},
+      required:true
+  },
+  tickets:{
+     type: [Repair],
+     default:[]
+    }
 });
 
 //Middleware executed before save - hash the user's password
