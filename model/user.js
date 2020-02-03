@@ -6,57 +6,23 @@ const SALT_WORK_FACTOR = 10;
 
 const Roles = ['admin','user'];
 
+const Repair = new mongoose.Schema({
+    cost: { type: Number, default: 1},
+    comments: { type: String, required: true}
+});
+
 // Define user model schema
 var UserSchema = new mongoose.Schema({
-  fullname:{
-      type:String,
-      required:true
-  },
-  email: {
-    type: String,
-    unique: true,
-    required: true
-  },
-  password: {
-    type: String,
-    required: true
-  },
-  role:{
-      type: {type:String, default: "user",enum:Roles},
-      required:true
-  },
-  tickets:{
-     type: [Repair],
-     default:[]
-    }
+    fullname:{ type:String, required:true },
+    email: { type: String, unique: true, required: true, index: true },
+    password: { type: String, required: true },
+    role:{ type: String, default: 'user',enum:Roles },
+    tickets:{ type: [Repair], default:[] }
 });
 
-//Middleware executed before save - hash the user's password
-UserSchema.pre('save', function(next) {
 
-   var user = this;
 
-    // only hash the password if it has been modified (or is new)
-    if (!user.isModified('password')) return next();
-
-    // generate a salt
-    bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
-        if (err)  {
-         return next(err);
-      }
-
-        // hash the password using our new salt
-        bcrypt.hash(user.password, salt,null,function(err, hash) {
-            if (err) return next(err);
-
-            // override the cleartext password with the hashed one
-            user.password = hash;
-            next();
-        });
-    });
-});
-
-UserSchema.methods.verifyPassword = function(candidatePassword, cb) {
+UserSchema.methods.verifyPassword = (candidatePassword, cb) => {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
         if (err) return cb(err);
         cb(null, isMatch);

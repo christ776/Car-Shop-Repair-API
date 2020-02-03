@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx ./server.js",
+    "debug": "nodemon ./server.js --debug"
   },
   "author": "",
   "license": "ISC",
@@ -12,9 +14,15 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
     "cors": "^2.8.3",
+    "dotenv": "^8.2.0",
     "express": "^4.14.0",
-    "jsonwebtoken": "^7.3.0",
-    "mongoose": "^5.8.7",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.8.11",
     "morgan": "*"
+  },
+  "devDependencies": {
+    "istanbul": "^0.4.5",
+    "mocha": "^7.0.1",
+    "sinon": "^8.1.1"
   }
 }
