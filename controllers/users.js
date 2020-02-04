@@ -1,7 +1,7 @@
 var User = require('../model/user');
 var middleware = require('../middleware/middleware');
 
-exports.create = (req,res) => {
+module.exports.create = (req,res) => {
 
     const newUser = new User(req.body);
     console.log('New user creation with: ', req.body);
@@ -13,7 +13,7 @@ exports.create = (req,res) => {
     });
 };
 
-exports.login = (req, res) => {
+module.exports.login = (req, res) => {
 
     const password = req.body.password;
     const email = req.body.email;
