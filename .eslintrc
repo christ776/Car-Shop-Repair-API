@@ -19,6 +19,11 @@
         "es6": true,
         "node": true
     },
+    "parserOptions": {
+        // Required for certain syntax usages
+        "ecmaVersion": 9
+        
+    },
     "ecmaFeatures": {
         "modules": true,
         "experimentalObjectRestSpread": true

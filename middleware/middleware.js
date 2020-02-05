@@ -1,31 +1,20 @@
 const jwt = require('jsonwebtoken');
 
-module.exports.createToken = (user) => {
-
-    return new Promise((resolve,reject) => {
-
-        jwt.sign(user,process.env.SECRET_KEY, {
-            expiresIn:4000
-        },
-        (err,token) => {
-            if (err) {
-                reject(err);
-            }
-            else {
-                resolve(token);
-            }
-        });
-    });
+module.exports = {
+    createToken,
+    verifyToken
 };
 
-module.exports.verifyToken = (req,res) => {
+function createToken (user) {
+    return jwt.sign(user,process.env.SECRET_KEY, { expiresIn:4000});
+}
+
+function verifyToken(req,res, next) {
 
     // check header or url parameters or post parameters for token
     var token = req.body.token || req.query.token || req.headers['x-access-token'];
-
     // decode token
     if (token) {
-
         // verifies secret and checks exp
         jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {     
             if (err) {
@@ -46,4 +35,4 @@ module.exports.verifyToken = (req,res) => {
             message: 'No token provided.' 
         });
     }
-};
+}

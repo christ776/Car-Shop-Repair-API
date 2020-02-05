@@ -21,9 +21,20 @@
     "morgan": "*"
   },
   "devDependencies": {
+    "@types/express": "^4.16.0",
+    "@types/jest": "^23.3.8",
+    "@types/lodash": "^4.14.118",
+    "@types/mongoose": "^5.3.17",
+    "@types/node": "^10.14.8",
+    "@typescript-eslint/eslint-plugin": "^1.7.0",
+    "@typescript-eslint/parser": "^1.7.0",
     "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.1",
     "istanbul": "^0.4.5",
     "mocha": "^7.0.1",
-    "sinon": "^8.1.1"
+    "sinon": "^8.1.1",
+    "tslint": "^6.0.0",
+    "typescript": "^3.7.3"
   }
 }
