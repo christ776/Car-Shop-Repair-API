@@ -21,7 +21,7 @@ const UserSchema = new mongoose.Schema({
 });
 
 //Middleware executed before save - hash the user's password
-UserSchema.pre('save', async (next) => {
+UserSchema.pre('save', function(next) {
 
     const user = this;
  

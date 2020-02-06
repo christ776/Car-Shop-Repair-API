@@ -3,7 +3,7 @@ const middleware = require('../middleware/middleware');
 const bcrypt = require('bcrypt-nodejs');
 
 async function create(req,res) {
-    const newUser = new UserModel(req.body);
+    const newUser = new User(req.body);
     console.log('New user creation with: ', req.body);
     try {
         await newUser.save();
