@@ -1,4 +1,7 @@
 const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 module.exports = {
     createToken,
@@ -6,7 +9,7 @@ module.exports = {
 };
 
 function createToken (user) {
-    return jwt.sign(user,process.env.SECRET_KEY, { expiresIn:4000});
+    return jwt.sign(user.email,process.env.ACCESS_TOKEN_SECRET);
 }
 
 function verifyToken(req,res, next) {
